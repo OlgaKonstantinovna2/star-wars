@@ -1,0 +1,59 @@
+.card_wrapper {
+    text-align: left;
+    font-family: 'Akaya Kanadaka', cursive;
+    width: 20rem;
+    height: 105%;
+    background: rgba(65, 65, 65, 0.2);
+    border-top-left-radius: 15em 1em;
+    border-radius: 3rem;
+    border-bottom-right-radius: 15em 1em;
+}
+
+.card_wrapper:hover {
+    height: 110%;
+    background: rgba(65, 65, 65, 0.5);
+    transition: all 0.5s ease-in-out;
+}
+
+.card_img {
+    text-align: center;
+}
+
+.photo {
+    padding-top: 2rem;
+    width: 70%;
+    border-radius: 4rem;
+}
+
+.bottom_panel {
+    margin-left: 2rem;
+    align-items: center;
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: 0.8fr 0.3fr;
+}
+
+.info_characters {
+
+}
+
+.name_characters,.homeworld {
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.button {
+    background: none;
+    border: none; 
+    outline: none;
+}
+
+.like {
+    width: 100%;
+    opacity: 0.3;
+}
+
+.nolike {
+    width: 100%;
+}

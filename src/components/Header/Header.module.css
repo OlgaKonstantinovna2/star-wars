@@ -1,0 +1,36 @@
+.wrapper {
+    position: absolute;
+    margin-bottom: 5rem;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.logo_img {
+    width: 40%
+}
+
+.links_navigation {
+    display: flex;
+    column-gap: 2rem;
+    font-family: 'Akaya Kanadaka', cursive;
+    text-decoration: none !important;
+    line-height: 5.6rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0.8;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0.038rem;
+}
+
+.link:visited, .links_navigation{
+    text-decoration: none !important;
+    color: rgb(255, 255, 255);
+}
+
+.link:hover, .link:visited:hover, .links_navigation:visited:hover, .links_navigation:hover {
+    text-decoration: none !important; 
+}

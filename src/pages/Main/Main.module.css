@@ -1,0 +1,36 @@
+.wrapper {
+    margin: 0 auto;
+    text-align: -webkit-center;
+    margin-bottom: 20rem;
+}
+
+.cards_wrapper {
+    position: relative;
+    top: 12rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 3rem;
+    justify-items: center;
+    width: 80%;
+}
+
+.buttons {
+    position: absolute;
+    top: 8rem;
+    width: 100%;
+}
+
+.button {
+    background: rgba(65, 65, 65, 0.2);
+    font-family: "Montserrat";
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    border: none; 
+    outline: none;
+    text-decoration: underline;
+}
+
+button:hover {
+    background: rgba(65, 65, 65, 0.5);
+}

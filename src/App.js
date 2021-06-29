@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import { Route, Switch } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import './App.css';
+import Header from "./components/Header/Header";
+import moon from "./images/moon.png";
+import Main from './pages/Main/index.jsx';
+import FavCharacters from './pages/FavoriteCharacters/index.jsx';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <HashRouter>
+            <div className="App">
+            <div class="background_container">
+                <img src={moon} className="moon" alt="moon" />
+                <div class="stars"></div>
+                <div class="twinkling"></div>
+                <div class="clouds"></div>
+            </div>
+                <Header />
+                <Switch>
+                    <Route path='/FavCharacters' render={() => <FavCharacters />} />
+                    <Route path='/' render={() => <Main />} />
+                </Switch>
+            </div>
+        </ HashRouter>
+    );
 }
 
 export default App;
