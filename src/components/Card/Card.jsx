@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Card.module.css";
-import nolike_img from "../../images/no_like.svg";
 import like_img from "../../images/like.svg";
 
 const Card = ({ card_img, name_characters, homeworld }) => {
@@ -8,7 +7,7 @@ const Card = ({ card_img, name_characters, homeworld }) => {
     return (
         <div className={styles.card_wrapper}>
             <div class={styles.card_img}>
-                <img src={card_img} className={styles.photo} alt="moon" />
+                <img src={card_img} className={styles.photo} alt="cardImg" />
             </div>
             <div className={styles.bottom_panel}>
                 <div className={styles.info_characters}>

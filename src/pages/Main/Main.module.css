@@ -6,7 +6,7 @@
 
 .cards_wrapper {
     position: relative;
-    top: 12rem;
+    top: 10rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 2rem;
@@ -15,11 +15,68 @@
     width: 80%;
 }
 
-.buttons {
+.top_panel {
+    align-items: center;
     position: absolute;
-    top: 8rem;
-    width: 100%;
+    justify-items: center;
+    display: grid;
+    column-gap: 20rem;
+    grid-template-columns: 1fr 1fr;
+    right: 20%;
+    top: 10rem;
 }
+
+.search_wrapper {
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    top: 8rem;
+}
+
+.input{
+    position: relative;
+    height: 60px;
+    min-height: 60px;
+    margin-top: 12px;
+    width: 340px;
+    background: #F2F2F2;
+    border-radius: 26px 26px 5px 26px;
+    margin: 0 auto;
+    opacity: 0.6;
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+  }
+  
+  .input_native{
+    background-color: rgba(0,0,0,0);
+    outline: none;
+    color: #2C2C2C;
+    margin-top: 27px;
+    margin-right: 100px;
+    border: none;
+    text-align: left;
+    font-family: 'Montserrat';
+    font-size: 17px;
+    appearance: none;
+    opacity: 1!important;
+    -webkit-box-shadow: inset 0 0 0 50px #F2F2F2;
+    -webkit-text-fill-color: #000;
+  }
+
+.search_btn, .search_btn:hover {
+    border: none; 
+    outline: none;
+    background: none;
+    text-decoration: none;
+}
+
+.search_btn:hover {
+    opacity: 0.5;
+}
+
 
 .button {
     background: rgba(65, 65, 65, 0.2);
