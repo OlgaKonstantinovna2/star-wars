@@ -1,12 +1,13 @@
 .wrapper {
+    background: rgba(0, 0, 0, 0.5);
     position: relative;
     margin-bottom: 5rem;
-    margin-right: 5rem;
-    margin-left: 5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    border-radius: 5rem;
 }
 
 .logo_img {
@@ -14,6 +15,7 @@
 }
 
 .links_navigation {
+    margin-right: 2rem; 
     display: flex;
     column-gap: 2rem;
     font-family: 'Akaya Kanadaka', cursive;

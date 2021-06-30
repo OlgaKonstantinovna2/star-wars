@@ -9,6 +9,9 @@ const Main = () => {
     const [search, setSearch] = useState(null);
     // const [searchImg, setSearchImg] = useState(null);
     const [valueSearch, setValueSearch] = useState("");
+    const [favorites, setfavorites] = useState(
+        JSON.parse(localStorage.getItem("favorite")) || []
+    )
 
     useEffect(() => {
         init(1)
@@ -21,10 +24,21 @@ const Main = () => {
                 data.results.map((item, itemIndex) => ({
                     ...item,
                     image: `https://starwars-visualguide.com/assets/img/characters/${index === 1 ? ((index - 1) * 10 + (itemIndex + 1)) : ((index - 1) * 10 + (itemIndex + 2))
-                        }.jpg`
+                        }.jpg`,
+                    id: index === 1 ? ((index - 1) * 10 + (itemIndex + 1)) : ((index - 1) * 10 + (itemIndex + 2))
                 }))
             )
         }
+        // const planet = await request.get(`people/?page=${index}`)
+        // if (planet.results) {
+        //     setplanet(
+        //         planet.results.map((item, itemIndex) => ({
+        //             ...item,
+        //             image: `https://starwars-visualguide.com/assets/img/characters/${index === 1 ? ((index - 1) * 10 + (itemIndex + 1)) : ((index - 1) * 10 + (itemIndex + 2))
+        //                 }.jpg`
+        //         }))
+        //     )
+        // }
     }
 
     const Search = async (name) => {
@@ -37,6 +51,18 @@ const Main = () => {
                 }))
             )
         }
+    }
+
+    const setLike = (e, isLike) => {
+        console.log('setLike Func')
+        const tmp = JSON.parse(localStorage.getItem("favorite")) || []
+        if (isLike) {
+            tmp.push(e)
+        } else {
+            tmp.splice(tmp.indexOf(e), 1)
+        }
+        localStorage.setItem("favorite", JSON.stringify(tmp))
+        setfavorites(tmp)
     }
 
     function numFromStr(str) {
@@ -61,6 +87,9 @@ const Main = () => {
                                 search.map((item, index) =>
                                     <div key={`character_${index}`} className={styles.card_wrapper}>
                                         <Card
+                                            id={item.id}
+                                            isFavorite={favorites.indexOf(item.id) !== -1}
+                                            setLike={setLike}
                                             name_characters={item.name}
                                             // homeworld={data.results.name}
                                             card_img={item.image}
@@ -77,6 +106,9 @@ const Main = () => {
                                 data.map((item, index) =>
                                     <div key={`character_${index}`} className={styles.card_wrapper}>
                                         <Card
+                                            id={item.id}
+                                            isFavorite={favorites.indexOf(item.id) !== -1}
+                                            setLike={setLike}
                                             name_characters={item.name}
                                             // homeworld={data.results.name}
                                             card_img={item.image}
@@ -88,38 +120,36 @@ const Main = () => {
                     </div>
                 )
             }
-            <div className={styles.top_panel}>
-                <div className={styles.search_wrapper}>
-                    <div className={styles.input}>
-                        <input
-                            onChange={(event) => setValueSearch(event.target.value)}
-                            value={valueSearch}
-                            className={styles.input_native}
-                            type="text"
-                            placeholder="Поиск"
-                        />
-                    </div>
-                    <button
-                        onClick={() => {
-                            Search(valueSearch)
-                        }}
-                        className={styles.search_btn}>
-                        <img className={styles.search_img} src={searchImage} alt='search' />
-                    </button>
+            <div className={styles.search_wrapper}>
+                <div className={styles.input}>
+                    <centered>
+                        <div className={styles.group}>
+                            <input value={valueSearch} onChange={(event) => setValueSearch(event.target.value)} type="text" id="name" required="required" />
+                            <label for="search">Search</label>
+                            <div className={styles.bar}></div>
+                        </div>
+                    </centered>
                 </div>
-                <div className={styles.buttons}>
-                    {
-                        data && (
-                            (new Array(9)).fill(1).map((a, index) =>
-                                <button
-                                    className={styles.button}
-                                    key={`page_${index}`}
-                                    onClick={() => init(index + 1)}
-                                >{index + 1}</button>
-                            )
+                <button
+                    onClick={() => {
+                        Search(valueSearch)
+                    }}
+                    className={styles.search_btn}>
+                    <img className={styles.search_img} src={searchImage} alt='search' />
+                </button>
+            </div>
+            <div className={styles.buttons}>
+                {
+                    !valueSearch && data && (
+                        (new Array(9)).fill(1).map((a, index) =>
+                            <button
+                                className={styles.button}
+                                key={`page_${index}`}
+                                onClick={() => init(index + 1)}
+                            >{index + 1}</button>
                         )
-                    }
-                </div>
+                    )
+                }
             </div>
         </div>
     )
