@@ -6,9 +6,9 @@ import searchImage from "../../images/search.svg";
 
 const Main = () => {
     const [data, setData] = useState(null);
-    const [search, setSearch] = useState(null);
-    // const [searchImg, setSearchImg] = useState(null);
+    const [searchData, setSearchData] = useState(null);
     const [valueSearch, setValueSearch] = useState("");
+    const [indexBtn, setIndexBtn] = useState(0);
     const [favorites, setfavorites] = useState(
         JSON.parse(localStorage.getItem("favorite")) || []
     )
@@ -23,28 +23,18 @@ const Main = () => {
             setData(
                 data.results.map((item, itemIndex) => ({
                     ...item,
-                    image: `https://starwars-visualguide.com/assets/img/characters/${index === 1 ? ((index - 1) * 10 + (itemIndex + 1)) : ((index - 1) * 10 + (itemIndex + 2))
+                    image: `https://starwars-visualguide.com/assets/img/characters/${(index - 1) * 10 + (itemIndex + 1)
                         }.jpg`,
                     id: index === 1 ? ((index - 1) * 10 + (itemIndex + 1)) : ((index - 1) * 10 + (itemIndex + 2))
                 }))
             )
         }
-        // const planet = await request.get(`people/?page=${index}`)
-        // if (planet.results) {
-        //     setplanet(
-        //         planet.results.map((item, itemIndex) => ({
-        //             ...item,
-        //             image: `https://starwars-visualguide.com/assets/img/characters/${index === 1 ? ((index - 1) * 10 + (itemIndex + 1)) : ((index - 1) * 10 + (itemIndex + 2))
-        //                 }.jpg`
-        //         }))
-        //     )
-        // }
     }
 
-    const Search = async (name) => {
+    const searchCharacters = async (name) => {
         const search = await request.get(`people/?search=${name}`)
         if (search.results) {
-            setSearch(
+            setSearchData(
                 search.results.map((item) => ({
                     ...item,
                     image: `https://starwars-visualguide.com/assets/img/characters/${numFromStr(item.url)}.jpg`
@@ -67,24 +57,21 @@ const Main = () => {
 
     function numFromStr(str) {
         return [...str]
-            .map(i => { if (isFinite(i) == true) { return i } else { return " " } })
+            .map(i => { if (isFinite(i) === true) { return i } else { return " " } })
             .join("")
             .split(" ")
-            .filter(i => i != "")
+            .filter(i => i !== "")
             .map(i => Number(i))
     }
-
-    //  let a = numFromStr(item.url)
-    //  console.log(a)
 
     return (
         <div className={styles.wrapper}>
             {
-                valueSearch ? (
+                searchData && valueSearch ? (
                     <div className={styles.cards_wrapper}>
                         {
-                            search && (
-                                search.map((item, index) =>
+                            searchData && (
+                                searchData.map((item, index) =>
                                     <div key={`character_${index}`} className={styles.card_wrapper}>
                                         <Card
                                             id={item.id}
@@ -122,17 +109,15 @@ const Main = () => {
             }
             <div className={styles.search_wrapper}>
                 <div className={styles.input}>
-                    <centered>
-                        <div className={styles.group}>
-                            <input value={valueSearch} onChange={(event) => setValueSearch(event.target.value)} type="text" id="name" required="required" />
-                            <label for="search">Search</label>
-                            <div className={styles.bar}></div>
-                        </div>
-                    </centered>
+                    <div className={styles.group}>
+                        <input value={valueSearch} onChange={(event) => setValueSearch(event.target.value)} type="text" id="name" required="required" />
+                        <label>Search</label>
+                        <div className={styles.bar}></div>
+                    </div>
                 </div>
                 <button
                     onClick={() => {
-                        Search(valueSearch)
+                        searchCharacters(valueSearch)
                     }}
                     className={styles.search_btn}>
                     <img className={styles.search_img} src={searchImage} alt='search' />
@@ -143,9 +128,12 @@ const Main = () => {
                     !valueSearch && data && (
                         (new Array(9)).fill(1).map((a, index) =>
                             <button
-                                className={styles.button}
+                                className={`${styles.button} ${indexBtn === index && styles.activeButton}`}
                                 key={`page_${index}`}
-                                onClick={() => init(index + 1)}
+                                onClick={() => {
+                                    init(index + 1)
+                                    setIndexBtn(index)
+                                }}
                             >{index + 1}</button>
                         )
                     )

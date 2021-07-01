@@ -10,12 +10,12 @@ function App() {
     return (
         <HashRouter>
             <div className="App">
-            <div class="background_container">
-                <img src={moon} className="moon" alt="moon" />
-                <div class="stars"></div>
-                <div class="twinkling"></div>
-                <div class="clouds"></div>
-            </div>
+                <div className="background_container">
+                    <img src={moon} className="moon" alt="moon" />
+                    <div className="stars"></div>
+                    <div className="twinkling"></div>
+                    <div className="clouds"></div>
+                </div>
                 <Header />
                 <Switch>
                     <Route path='/FavCharacters' render={() => <FavCharacters />} />

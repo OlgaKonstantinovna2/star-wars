@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 
 const Header = () => {
     return (
@@ -13,8 +13,8 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className={styles.links_navigation}>
-                    <Link className={styles.link} to='/'>Главная</Link>
-                    <Link className={styles.link} to='/FavCharacters'>Любимые герои</Link>
+                    <Link className={styles.link} to='/'>Home</Link>
+                    <Link className={styles.link} to='/FavCharacters'>Favorite characters</Link>
                 </div>
             </div>
         </section>

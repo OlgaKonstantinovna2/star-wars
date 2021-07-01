@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Card.module.css";
 import like_img from "../../images/like.svg";
 
@@ -6,16 +6,16 @@ const Card = ({ id, isFavorite, setLike, card_img, name_characters, homeworld })
 
     return (
         <div className={styles.card_wrapper}>
-            <div class={styles.card_img}>
+            <div className={styles.card_img}>
                 <img src={card_img} className={styles.photo} alt="cardImg" />
             </div>
             <div className={styles.bottom_panel}>
                 <div className={styles.info_characters}>
                     <div className={styles.name_characters}>
-                        Имя: {name_characters}
+                        Name: {name_characters}
                     </div>
                     <div className={styles.homeworld}>
-                        Планета: {homeworld}
+                        Planet: {homeworld}
                     </div>
                 </div>
                 <div className={styles.button_like}>
