@@ -10,11 +10,11 @@
     border-radius: 5rem;
 }
 
-.logo_img {
+.logoImg {
     width: 25%
 }
 
-.links_navigation {
+.linksNavigation {
     margin-right: 2rem; 
     display: flex;
     column-gap: 2rem;
@@ -27,11 +27,11 @@
     letter-spacing: 0.038rem;
 }
 
-.link:visited, .links_navigation{
+.link:visited, .linksNavigation{
     text-decoration: none !important;
     color: rgb(255, 255, 255);
 }
 
-.link:hover, .link:visited:hover, .links_navigation:visited:hover, .links_navigation:hover {
+.link:hover, .link:visited:hover, .linksNavigation:visited:hover, .linksNavigation:hover {
     text-decoration: none !important; 
 }

@@ -7,12 +7,12 @@ const Header = () => {
     return (
         <section className={styles.header}>
             <div className={styles.wrapper}>
-                <div className={styles.logo_wrapper}>
+                <div className={styles.logoWrapper}>
                     <Link to='/'>
-                        <img className={styles.logo_img} src={logo} alt='logo' />
+                        <img className={styles.logoImg} src={logo} alt='logo' />
                     </Link>
                 </div>
-                <div className={styles.links_navigation}>
+                <div className={styles.linksNavigation}>
                     <Link className={styles.link} to='/'>Home</Link>
                     <Link className={styles.link} to='/FavCharacters'>Favorite characters</Link>
                 </div>

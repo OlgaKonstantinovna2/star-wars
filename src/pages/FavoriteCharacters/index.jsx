@@ -5,7 +5,7 @@ import styles from "./FavCharacters.module.css";
 
 const FavCharacters = () => {
     const [data, setData] = useState(null)
-    const [favorites, setfavorites] = useState(
+    const [favorites, setFavorites] = useState(
         JSON.parse(localStorage.getItem("favorite")) || []
     )
 
@@ -39,7 +39,7 @@ const FavCharacters = () => {
             tmp.splice(tmp.indexOf(e), 1)
         }
         localStorage.setItem("favorite", JSON.stringify(tmp))
-        setfavorites(tmp)
+        setFavorites(tmp)
     }
 
     return (
@@ -47,18 +47,18 @@ const FavCharacters = () => {
             <div className={styles.title}>
                 Любимые герои
             </div>
-            <div className={styles.cards_wrapper}>
+            <div className={styles.cardsWrapper}>
                 {
                     data && (
                         data.map((item, index) =>
-                            <div key={`character_${index}`} className={styles.card_wrapper}>
+                            <div key={`character_${index}`} className={styles.cardWrapper}>
                                 <Card
                                     id={item.id}
                                     isFavorite={favorites.indexOf(item.id) !== -1}
                                     setLike={setLike}
-                                    name_characters={item.name}
+                                    nameCharacters={item.name}
                                     // homeworld={data.results.name}
-                                    card_img={item.image}
+                                    cardImg={item.image}
                                 />
                             </div>
                         )

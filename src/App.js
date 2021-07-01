@@ -10,7 +10,7 @@ function App() {
     return (
         <HashRouter>
             <div className="App">
-                <div className="background_container">
+                <div className="backgroundContainer">
                     <img src={moon} className="moon" alt="moon" />
                     <div className="stars"></div>
                     <div className="twinkling"></div>

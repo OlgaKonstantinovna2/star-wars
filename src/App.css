@@ -27,6 +27,7 @@
 
 .App-link {
   color: #61dafb;
+  text-decoration: none;
 }
 
 @keyframes App-logo-spin {
@@ -70,7 +71,7 @@
     -webkit-transform: translate3d(1000px, 0px, 0px);
   }
 }
-.background_container {
+.backgroundContainer {
   position: fixed;
   top: 0;
   left: 0;

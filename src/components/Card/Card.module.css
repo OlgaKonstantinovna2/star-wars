@@ -1,11 +1,12 @@
-.card_wrapper {
+.cardWrapper {
     text-align: left;
-    font-family: 'Akaya Kanadaka', cursive;
+    font-weight: 500;
+    font-family: 'Courier New', Courier, monospace;
     width: 20rem;
     height: 105%;
 }
 
-.card_img {
+.cardImg {
     text-align: center;
 }
 
@@ -23,7 +24,7 @@
     transform: scale(1.2);
 }
 
-.bottom_panel {
+.bottomPanel {
     margin-left: 3rem;
     align-items: center;
     margin-top: 2rem;
@@ -31,11 +32,7 @@
     grid-template-columns: 0.8fr 0.3fr;
 }
 
-.info_characters {
-
-}
-
-.name_characters,.homeworld {
+.nameCharacters,.homeworld {
     color: rgb(255, 255, 255);
     font-size: 1rem;
     opacity: 0.8;

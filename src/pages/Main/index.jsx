@@ -3,13 +3,15 @@ import styles from "./Main.module.css";
 import Card from "../../components/Card/Card";
 import request from "../../request";
 import searchImage from "../../images/search.svg";
+import resetImg from "../../images/reset.svg";
 
 const Main = () => {
     const [data, setData] = useState(null);
+    const [searchQuery, setSearchQuery] = useState(false);
     const [searchData, setSearchData] = useState(null);
     const [valueSearch, setValueSearch] = useState("");
     const [indexBtn, setIndexBtn] = useState(0);
-    const [favorites, setfavorites] = useState(
+    const [favorites, setFavorites] = useState(
         JSON.parse(localStorage.getItem("favorite")) || []
     )
 
@@ -52,7 +54,7 @@ const Main = () => {
             tmp.splice(tmp.indexOf(e), 1)
         }
         localStorage.setItem("favorite", JSON.stringify(tmp))
-        setfavorites(tmp)
+        setFavorites(tmp)
     }
 
     function numFromStr(str) {
@@ -67,19 +69,19 @@ const Main = () => {
     return (
         <div className={styles.wrapper}>
             {
-                searchData && valueSearch ? (
-                    <div className={styles.cards_wrapper}>
+                searchQuery ? (
+                    <div className={styles.cardsWrapper}>
                         {
                             searchData && (
                                 searchData.map((item, index) =>
-                                    <div key={`character_${index}`} className={styles.card_wrapper}>
+                                    <div key={`character_${index}`} className={styles.cardWrapper}>
                                         <Card
                                             id={item.id}
                                             isFavorite={favorites.indexOf(item.id) !== -1}
                                             setLike={setLike}
-                                            name_characters={item.name}
+                                            nameCharacters={item.name}
                                             // homeworld={data.results.name}
-                                            card_img={item.image}
+                                            cardImg={item.image}
                                         />
                                     </div>
                                 )
@@ -87,18 +89,18 @@ const Main = () => {
                         }
                     </div>
                 ) : (
-                    <div className={styles.cards_wrapper}>
+                    <div className={styles.cardsWrapper}>
                         {
                             data && (
                                 data.map((item, index) =>
-                                    <div key={`character_${index}`} className={styles.card_wrapper}>
+                                    <div key={`character_${index}`} className={styles.cardWrapper}>
                                         <Card
                                             id={item.id}
                                             isFavorite={favorites.indexOf(item.id) !== -1}
                                             setLike={setLike}
-                                            name_characters={item.name}
+                                            nameCharacters={item.name}
                                             // homeworld={data.results.name}
-                                            card_img={item.image}
+                                            cardImg={item.image}
                                         />
                                     </div>
                                 )
@@ -107,7 +109,15 @@ const Main = () => {
                     </div>
                 )
             }
-            <div className={styles.search_wrapper}>
+            <div className={styles.searchWrapper}>
+                <button
+                    disabled={!searchQuery}
+                    onClick={() => {
+                        setSearchQuery(false)
+                    }}
+                    className={styles.searchBtn}>
+                    <img className={styles.resetImg} src={resetImg} alt='reset' />
+                </button>
                 <div className={styles.input}>
                     <div className={styles.group}>
                         <input value={valueSearch} onChange={(event) => setValueSearch(event.target.value)} type="text" id="name" required="required" />
@@ -117,15 +127,16 @@ const Main = () => {
                 </div>
                 <button
                     onClick={() => {
+                        setSearchQuery(true)
                         searchCharacters(valueSearch)
                     }}
-                    className={styles.search_btn}>
-                    <img className={styles.search_img} src={searchImage} alt='search' />
+                    className={styles.searchBtn}>
+                    <img className={styles.searchImg} src={searchImage} alt='search' />
                 </button>
             </div>
             <div className={styles.buttons}>
                 {
-                    !valueSearch && data && (
+                    !searchData && data && (
                         (new Array(9)).fill(1).map((a, index) =>
                             <button
                                 className={`${styles.button} ${indexBtn === index && styles.activeButton}`}
